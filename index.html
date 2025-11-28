@@ -1,10 +1,1263 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Arzu's Portfolio</title>
+    <meta charset="UTF-8" />
+    <title>Arzu Allahverdiyev | Data Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Personal website of Arzu Allahverdiyev, Data Engineer. Portfolio, experience, projects and contact details." />
+
+    <style>
+        :root {
+            --bg: #050816;
+            --bg-alt: #0b1120;
+            --card: #020617;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.15);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --border: #1f2937;
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.65);
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --radius-full: 999px;
+            --max-width: 1080px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #020617 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 23, 42, 0.96),
+                rgba(15, 23, 42, 0.82),
+                transparent
+            );
+            border-bottom: 1px solid rgba(31, 41, 55, 0.6);
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 35% 65% 45% 55%;
+            background: radial-gradient(circle at 20% 20%, #38bdf8, #0f172a);
+            box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.6),
+                0 0 25px rgba(56, 189, 248, 0.4);
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--muted);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.25rem;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(to right, #38bdf8, #a855f7);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 4.5rem 0 3rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .hero-kicker {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-kicker-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+        }
+
+        .hero-title {
+            font-size: clamp(2.3rem, 3vw + 1rem, 3.2rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 36rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .tag {
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(55, 65, 81, 0.85);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.78rem;
+            color: var(--muted);
+            background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.15), transparent);
+        }
+
+        .tag-strong {
+            border-color: rgba(56, 189, 248, 0.8);
+            color: #e0f2fe;
+            background: radial-gradient(circle at 10% 0, rgba(56, 189, 248, 0.35), transparent);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            border-radius: var(--radius-full);
+            padding: 0.55rem 1.2rem;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease,
+                background 0.12s ease, border-color 0.12s ease,
+                color 0.12s ease;
+        }
+
+        .btn-primary {
+            background: radial-gradient(circle at 0 0, #38bdf8, #0369a1);
+            box-shadow: 0 10px 32px rgba(56, 189, 248, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 40px rgba(56, 189, 248, 0.45);
+        }
+
+        .btn-ghost {
+            border-color: rgba(55, 65, 81, 0.9);
+            background: rgba(15, 23, 42, 0.7);
+            color: var(--muted);
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(148, 163, 184, 0.9);
+            color: var(--text);
+            background: rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-icon {
+            font-size: 1rem;
+        }
+
+        .hero-meta {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .hero-meta strong {
+            color: var(--text);
+        }
+
+        /* HERO RIGHT CARD */
+
+        .hero-card {
+            background: radial-gradient(circle at top, #0b1120, #020617);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(55, 65, 81, 0.8);
+            box-shadow: var(--shadow-soft);
+            padding: 1.4rem 1.3rem 1.3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: -60%;
+            opacity: 0.17;
+            background:
+                radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.8), transparent 55%),
+                radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.9), transparent 47%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pill {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--muted);
+        }
+
+        .sparkline {
+            display: flex;
+            gap: 3px;
+            align-items: flex-end;
+        }
+
+        .sparkline span {
+            width: 3px;
+            border-radius: 999px;
+            background: linear-gradient(to top, rgba(56, 189, 248, 0.2), #38bdf8);
+        }
+
+        .sparkline span:nth-child(1) { height: 11px; }
+        .sparkline span:nth-child(2) { height: 19px; }
+        .sparkline span:nth-child(3) { height: 13px; }
+        .sparkline span:nth-child(4) { height: 24px; }
+        .sparkline span:nth-child(5) { height: 16px; }
+        .sparkline span:nth-child(6) { height: 29px; }
+        .sparkline span:nth-child(7) { height: 21px; }
+
+        .hero-card-body {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-card-title {
+            font-size: 0.95rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .hero-card-sub {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric {
+            background: rgba(15, 23, 42, 0.75);
+            border-radius: 0.9rem;
+            padding: 0.65rem 0.7rem;
+            border: 1px solid rgba(31, 41, 55, 0.9);
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .metric-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .metric-pill {
+            font-size: 0.72rem;
+            margin-top: 0.1rem;
+            color: #22c55e;
+        }
+
+        .stack-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .stack-pill {
+            font-size: 0.7rem;
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .hero-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+            margin-right: 0.35rem;
+        }
+
+        .hero-card-footer a {
+            font-size: 0.75rem;
+            color: #bae6fd;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 2.7rem 0 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .section-kicker {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+            max-width: 26rem;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.1fr);
+            gap: 1.8rem;
+        }
+
+        .about-text {
+            font-size: 0.95rem;
+            color: #d1d5db;
+        }
+
+        .about-text p + p {
+            margin-top: 0.7rem;
+        }
+
+        .highlight {
+            color: #e0f2fe;
+        }
+
+        .about-card {
+            background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.12), transparent),
+                rgba(15, 23, 42, 0.9);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            padding: 1rem;
+        }
+
+        .about-card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+        }
+
+        .about-list {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .about-list li + li {
+            margin-top: 0.35rem;
+        }
+
+        /* SKILLS */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(31, 41, 55, 0.9);
+            padding: 0.9rem 0.9rem 0.8rem;
+        }
+
+        .skill-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.45rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+        .skill-tag {
+            font-size: 0.75rem;
+            color: var(--muted);
+            border-radius: 999px;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            padding: 0.15rem 0.55rem;
+        }
+
+        /* EXPERIENCE */
+
+        .timeline {
+            border-left: 1px solid rgba(55, 65, 81, 0.9);
+            margin-top: 0.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.2rem;
+            padding-bottom: 1.3rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0.25rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 0.2rem;
+            width: 11px;
+            height: 11px;
+            border-radius: 999px;
+            border: 2px solid #38bdf8;
+            background: #020617;
+        }
+
+        .timeline-role {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .timeline-meta {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.82rem;
+            color: #d1d5db;
+        }
+
+        /* PROJECTS */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(31, 41, 55, 0.9);
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.6rem;
+            align-items: baseline;
+        }
+
+        .project-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .project-label {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            color: var(--muted);
+        }
+
+        .project-desc {
+            font-size: 0.82rem;
+            color: #d1d5db;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .project-stack span {
+            font-size: 0.72rem;
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 0.15rem 0.5rem;
+            border: 1px dashed rgba(55, 65, 81, 0.9);
+        }
+
+        .project-link {
+            font-size: 0.75rem;
+            color: #bae6fd;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        /* CONTACT */
+
+        .contact-card {
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            padding: 1rem 1.1rem 1.2rem;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0 2.2rem;
+        }
+
+        .contact-text {
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .contact-text p + p {
+            margin-top: 0.55rem;
+        }
+
+        .contact-meta {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 0.45rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            font-size: 0.86rem;
+        }
+
+        .contact-list li + li {
+            margin-top: 0.4rem;
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+        }
+
+        .contact-value {
+            font-size: 0.9rem;
+        }
+
+        .contact-value a {
+            color: #e0f2fe;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .social-pill {
+            font-size: 0.8rem;
+            border-radius: 999px;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            color: var(--muted);
+        }
+
+        .social-pill:hover {
+            border-color: rgba(148, 163, 184, 0.9);
+            color: var(--text);
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 1.5rem 0 2.2rem;
+            border-top: 1px solid rgba(31, 41, 55, 0.8);
+            margin-top: auto;
+        }
+
+        .footer-inner {
+            font-size: 0.78rem;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .footer-inner a {
+            color: #9ca3af;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero {
+                padding-top: 3.2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .projects-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .contact-card {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .navbar-inner {
+                padding-inline: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-inline: 0.75rem;
+            }
+
+            .inner {
+                padding-inline: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hello, I'm Arzu</h1>
-    <p>Welcome to my portfolio website!</p>
+<div class="page">
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-inner">
+            <div class="logo">
+                <div class="logo-mark"></div>
+                <div>
+                    <div>Arzu Allahverdiyev</div>
+                    <div class="logo-sub">Data Engineer</div>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+        <section class="hero">
+            <div class="inner">
+                <div class="hero-grid">
+                    <!-- LEFT -->
+                    <div>
+                        <div class="hero-kicker">
+                            <span class="hero-kicker-dot"></span>
+                            Data Engineering · Analytics · Platforms
+                        </div>
+                        <h1 class="hero-title">
+                            Hi, I’m <span class="hero-gradient">Arzu</span> — a data engineer
+                            building reliable analytics pipelines.
+                        </h1>
+                        <p class="hero-subtitle">
+                            I design and build data platforms, ETL/ELT pipelines and analytics
+                            layers that turn raw data into something teams can actually use.
+                            From batch jobs to modern lakehouse stacks, I enjoy combining
+                            clean architecture with practical solutions.
+                        </p>
+
+                        <div class="hero-tags">
+                            <span class="tag tag-strong">Data Engineering</span>
+                            <span class="tag">SQL · Python · PySpark</span>
+                            <span class="tag">Airflow · dbt</span>
+                            <span class="tag">Kafka · Streaming</span>
+                            <span class="tag">Data Warehousing · BI</span>
+                        </div>
+
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn btn-primary">
+                                <span>Let’s work together</span>
+                                <span class="btn-icon">→</span>
+                            </a>
+                            <!-- update href with your real CV link later -->
+                            <a href="#" class="btn btn-ghost">
+                                <span>Download CV</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-meta">
+                            <span><strong>Current focus:</strong> modern data stack, lakehouse,
+                                and robust analytics for banking & insurance.</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT CARD -->
+                    <aside class="hero-card">
+                        <div class="hero-card-header">
+                            <span class="pill">Data Engineer Snapshot</span>
+                            <div class="sparkline" aria-hidden="true">
+                                <span></span><span></span><span></span><span></span>
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+
+                        <div class="hero-card-body">
+                            <div class="hero-card-title">What I usually work on</div>
+                            <div class="hero-card-sub">
+                                End-to-end data pipelines, modern DWH / lakehouse, and
+                                analytics foundations for product and business teams.
+                            </div>
+
+                            <div class="metric-grid">
+                                <div class="metric">
+                                    <div class="metric-label">Core stack</div>
+                                    <div class="metric-value">SQL · Python · Spark</div>
+                                    <div class="metric-pill">Daily tools</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-label">Data platform</div>
+                                    <div class="metric-value">Airflow · dbt</div>
+                                    <div class="metric-pill">Orchestration & modeling</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-label">Data storage</div>
+                                    <div class="metric-value">Postgres · MS SQL</div>
+                                    <div class="metric-pill">OLTP & DWH</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-label">Domains</div>
+                                    <div class="metric-value">Banking · Insurance</div>
+                                    <div class="metric-pill">Risk & reporting</div>
+                                </div>
+                            </div>
+
+                            <div class="stack-row">
+                                <span class="stack-pill">Batch & streaming ETL</span>
+                                <span class="stack-pill">Data modeling (3NF, Dimensional)</span>
+                                <span class="stack-pill">BI & dashboards</span>
+                                <span class="stack-pill">Data quality & governance</span>
+                            </div>
+
+                            <div class="hero-card-footer">
+                                <div>
+                                    <span class="status-dot"></span>
+                                    Open to collaboration & knowledge sharing
+                                </div>
+                                <a href="#projects">View selected projects →</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="inner">
+                <div class="section-header">
+                    <div>
+                        <div class="section-kicker">About</div>
+                        <h2 class="section-title">Who I am as an engineer</h2>
+                    </div>
+                    <p class="section-subtitle">
+                        I enjoy taking messy, siloed data and turning it into well-structured,
+                        trustworthy datasets that help teams make better decisions.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>
+                            I’m a <span class="highlight">Data Engineer</span> with experience
+                            in banking and insurance, working across data warehousing,
+                            lakehouse patterns, and analytics engineering.
+                        </p>
+                        <p>
+                            My work often involves designing ETL/ELT processes, building
+                            data models (from bronze/silver/gold layers to dimensional
+                            models), and integrating tools like
+                            <span class="highlight">Airflow, dbt, Spark, Kafka, and modern
+                            databases</span>.
+                        </p>
+                        <p>
+                            Outside of production work, I also enjoy teaching and mentoring,
+                            building learning materials and realistic data environments
+                            for people entering the data field.
+                        </p>
+                    </div>
+
+                    <aside class="about-card">
+                        <div class="about-card-title">What I can help with</div>
+                        <ul class="about-list">
+                            <li>• Designing end-to-end data pipelines (from source systems to BI)</li>
+                            <li>• Building robust DWH / lakehouse architectures</li>
+                            <li>• Modeling data for analytics and reporting (Kimball, vault-style)</li>
+                            <li>• Implementing dbt projects, tests and documentation</li>
+                            <li>• Optimizing SQL / Spark jobs for performance and reliability</li>
+                            <li>• Teaching SQL, Python, and data engineering foundations</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="inner">
+                <div class="section-header">
+                    <div>
+                        <div class="section-kicker">Skills</div>
+                        <h2 class="section-title">Tech I’m comfortable with</h2>
+                    </div>
+                    <p class="section-subtitle">
+                        A mix of classic data engineering tools and modern analytics
+                        and orchestration frameworks.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-title">Languages & querying</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">PySpark</span>
+                            <span class="skill-tag">T-SQL</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-title">Data processing</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Spark</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">ETL / ELT</span>
+                            <span class="skill-tag">Batch & streaming</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-title">Storage & databases</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MS SQL Server</span>
+                            <span class="skill-tag">Data Warehousing</span>
+                            <span class="skill-tag">Lakehouse concepts</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-title">Orchestration & modeling</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Apache Airflow</span>
+                            <span class="skill-tag">dbt</span>
+                            <span class="skill-tag">Metadata-driven pipelines</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-title">Streaming & integration</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Kafka</span>
+                            <span class="skill-tag">APIs</span>
+                            <span class="skill-tag">CDC concepts</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-title">Analytics & BI</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Data modeling</span>
+                            <span class="skill-tag">Dashboards & reporting</span>
+                            <span class="skill-tag">Stakeholder collaboration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="inner">
+                <div class="section-header">
+                    <div>
+                        <div class="section-kicker">Experience</div>
+                        <h2 class="section-title">Where I’ve been focusing my time</h2>
+                    </div>
+                    <p class="section-subtitle">
+                        Selected roles and areas of responsibility. Details can be
+                        shared on request or via CV.
+                    </p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-role">
+                            Data Engineer · Insurance / Banking
+                        </div>
+                        <div class="timeline-meta">
+                            End-to-end data platform · DWH & reporting · Risk & finance
+                        </div>
+                        <p class="timeline-desc">
+                            Designing and implementing ETL/ELT pipelines, building DWH and
+                            analytics layers on top of operational systems, and
+                            collaborating with analysts, product and business stakeholders
+                            to deliver reliable reporting.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-role">
+                            Data Engineering & Analytics Instructor
+                        </div>
+                        <div class="timeline-meta">
+                            SQL · Python · Data Engineering foundations
+                        </div>
+                        <p class="timeline-desc">
+                            Creating practical curricula around SQL, Python, data
+                            warehousing, and analytics engineering — including real-world
+                            case studies, projects and mentoring for people switching into
+                            data roles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="inner">
+                <div class="section-header">
+                    <div>
+                        <div class="section-kicker">Projects</div>
+                        <h2 class="section-title">A few things I’ve worked on</h2>
+                    </div>
+                    <p class="section-subtitle">
+                        This is a small sample. I can share more detailed examples
+                        (including diagrams and code) during a call.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-name">Bank / Insurance Data Warehouse</h3>
+                            <span class="project-label">Production</span>
+                        </div>
+                        <p class="project-desc">
+                            Designed and implemented DWH layers (staging, core, marts)
+                            for financial and risk reporting. Included modeling for
+                            policies, claims, payments, and reinsurance, with
+                            SQL / dbt models on top of structured sources.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-stack">
+                                <span>SQL</span>
+                                <span>PostgreSQL / MS SQL</span>
+                                <span>dbt</span>
+                                <span>Dimensional modeling</span>
+                            </div>
+                            <!-- replace with real GitHub link when ready -->
+                            <a class="project-link" href="https://github.com/arzuallahverdiyev" target="_blank" rel="noreferrer">
+                                GitHub profile →
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-name">Modern DE Teaching Pipelines</h3>
+                            <span class="project-label">Education</span>
+                        </div>
+                        <p class="project-desc">
+                            Built realistic demo environments and datasets for teaching
+                            data engineering: Docker-based stacks, airflow-orchestrated
+                            pipelines, and dbt-modeled marts for students to practice on.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-stack">
+                                <span>Docker</span>
+                                <span>Airflow</span>
+                                <span>dbt</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                            <a class="project-link" href="#" target="_blank" rel="noreferrer">
+                                Demo repo (coming soon)
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="inner">
+                <div class="section-header">
+                    <div>
+                        <div class="section-kicker">Contact</div>
+                        <h2 class="section-title">Let’s connect</h2>
+                    </div>
+                    <p class="section-subtitle">
+                        Whether it’s a data engineering role, a collaboration, or a
+                        workshop you have in mind — feel free to reach out.
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-text">
+                        <p>
+                            If you’d like to talk about data engineering, analytics, or
+                            how to structure your organization’s data foundation, I’m
+                            always open to a conversation.
+                        </p>
+                        <p>
+                            The best way to reach me is email or LinkedIn. I try to reply
+                            thoughtfully, not instantly — but I do read everything.
+                        </p>
+                        <p class="contact-meta">
+                            You can also ping me if you’re switching into data and need
+                            practical guidance or resources.
+                        </p>
+                    </div>
+
+                    <aside>
+                        <ul class="contact-list">
+                            <li>
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">
+                                    <!-- replace with your real email -->
+                                    <a href="mailto:your.email@example.com">
+                                        your.email@example.com
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-label">GitHub</div>
+                                <div class="contact-value">
+                                    <a href="https://github.com/arzuallahverdiyev" target="_blank" rel="noreferrer">
+                                        github.com/arzuallahverdiyev
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-label">LinkedIn</div>
+                                <div class="contact-value">
+                                    <!-- replace with your real LinkedIn URL -->
+                                    <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+                                        linkedin.com/in/your-profile
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="social-row">
+                            <a class="social-pill" href="#projects">View projects</a>
+                            <a class="social-pill" href="#skills">View skills</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="inner footer-inner">
+            <div>
+                © <span id="year"></span> Arzu Allahverdiyev. All rights reserved.
+            </div>
+            <div>
+                Built with static HTML & CSS · Hosted on
+                <a href="https://github.io" target="_blank" rel="noreferrer">GitHub Pages</a>.
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Simple dynamic year for footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
